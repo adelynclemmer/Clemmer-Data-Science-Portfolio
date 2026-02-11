@@ -9,9 +9,9 @@ The data was obtained using a marketing set that was hoping to uncover "a detail
 
 The dashboard is divided into three main tabs:
 
-🔹   Data Overview: where you can view all the data and see the summary statistics
-🔹   Customer Demography: You can observe marital,age, and educational status to get a better frame of reference to the subjects
-🔹   Income & Purchase Behavior: Use the interactive income slider to filter customers, dynamically updating product category spending
+Data Overview: where you can view all the data and see the summary statistics
+Customer Demography: You can observe marital,age, and educational status to get a better frame of reference to the subjects
+Income & Purchase Behavior: Use the interactive income slider to filter customers, dynamically updating product category spending
 
 📌 To use Streamlit
 - clone the repository
