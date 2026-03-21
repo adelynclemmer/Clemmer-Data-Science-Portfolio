@@ -15,7 +15,7 @@ Basic Streamlit Dashboard - Interactive customer preference data visualization w
 Tidy Data Project - Tidying, performing exploratory analysis, and building visualizations for federal R&D budgets
 
 ## Basic Streamlit Dashboard
-<img width="1536" height="1132" alt="image" src="https://github.com/user-attachments/assets/96bbaf96-8341-4faa-bedd-ea47f9c0401b" />
+<img width="1536" height="1132" alt="image" src="https://github.com/user-attachments/assets/96bbaf96-8341-4faa-bedd-ea47f9c0401b" />\
 Link:[https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main/basic_streamlit_app]
 - Interactive data dashboard built with Streamlit, Pandas, Seaborn, and Matplotlib to explore customer purchasing behavior
 - Filters by income level to uncover shopping tendencies based on financial status
