@@ -1,12 +1,31 @@
-Data Tidying and Visualization 
+# Data Tidying and Visualization 
+This project is a data tidying and visualization notebook exploring how federal research and development budgets vary by department as well as alongside overall GDP growth.
 
-This project is a data tidying and visualization notebook built with Pandas, Seaborn, Matplotlib, and streamlit to explore how federal research and development budgets vary by department as well as alongside overall GDP growth.
+## Tools Used:
+📌Pandas\
+📌Seaborn\
+📌Matplotlib\
+📌Streamlit
 
-The data was obtained from a public GitHub data set by jonthegeek and adapted from the Federal Research and Development Spending by Agency set. The purpose of this project is to analyze the trends in both Total R&D spend over time, GDP growth over time, R&D spend by department over time, and the relative distribution of R&D by department over time. This project uses multiple forms of charts and bar graphs to display two main insights: 
+## Data Sourcing
 
-1st - Even though total GDP and R&D have dramatically increased over time, the relative spend on governmental R&D has dropped from ~5% in 1976 to >1% in 2017
-2nd - While no largely dramatic redistributions between government agencies' R&D budget have occurred over the period, there seems to be an increase in focus of social and science-based department R&D spend, like the NIH and the HHS, which grew over the period. Interestingly, the DOD's relative budget has been constrained from 1979 to 2017.    
+The data was obtained from a public GitHub data set by jonthegeek and adapted from the Federal Research and Development Spending by Agency set.
+You can reference the directory and obtain the data for yourself at the link below:\
+[https://github.com/rfordatascience/tidytuesday/tree/main/data/2019/2019-02-12]\
 
-🖥️ Grab the Data Here
-Federal Research and Development Spending by Agency
+## Overview
+The purpose of this project is to analyze the trends in both Total R&D spend over time, GDP growth over time, R&D spend by department over time, and the relative distribution of R&D by department over time. This project uses multiple forms of bar graphs, stacked bar graphs, and line plots to display two main insights:
+
+✅ Even though total GDP and R&D have dramatically increased over time, the relative spend on governmental R&D has dropped from ~5% in 1976 to >1% in 2017\
+✅ While no largely dramatic redistributions between government agencies' R&D budget have occurred over the period, there seems to be an increase in focus of social and science-based department R&D spend, like the NIH and the HHS, which grew over the period. Interestingly, the DOD's relative budget has been constrained from 1979 to 2017.    
+
+## Tidy Data Pricipals 
+The goal of tidy data is to create a standardized structure. According to Wickham's piece, tidy data is necessary to prepare data for analysis and she presents a clear structure to get to that point. To clean messy data we must ensure\
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each type of observational unit forms a table
+
+🖥️ Setup Instructions
+- clone the repository
+- Install required packages "pip install streamlit pandas seaborn matplotlib
 
