@@ -20,12 +20,12 @@ The purpose of this project is to analyze the trends in both Total R&D spend ove
 ✅ While no largely dramatic redistributions between government agencies' R&D budget have occurred over the period, there seems to be an increase in focus of social and science-based department R&D spend, like the NIH and the HHS, which grew over the period. Interestingly, the DOD's relative budget has been constrained from 1979 to 2017.    
 
 ## Tidy Data Pricipals 
-The goal of tidy data is to create a standardized structure. According to Wickham's piece, tidy data is necessary to prepare data for analysis and she presents a clear structure to get to that point. To clean messy data we must ensure\
+The goal of tidy data is to create a standardized structure. According to Wickham's piece, tidy data is necessary to prepare data for analysis and he presents a clear structure to get to that point. To clean messy data we must ensure\
 1. Each variable forms a column
 2. Each observation forms a row
 3. Each type of observational unit forms a table
 
 🖥️ Setup Instructions
 - clone the repository
-- Install required packages "pip install streamlit pandas seaborn matplotlib
+- Install required packages "pip install streamlit pandas seaborn matplotlib"
 
