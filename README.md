@@ -25,4 +25,4 @@ Tidy Data Project - Tidying, performing exploratory analysis, and building visua
 - A stacked bar chart and line plot show which departments see steady vs. evolving budgets with annotations about the events that could cause the shift in funding  
 
 ✅ Compliments Porflio ✅  
-All data scientists must demonstrate the ability to clean messy data for future use. This project taught me how to shift from narrow to wide-form data and aggregate data frames to build compelling visualization.
+All data scientists must demonstrate the ability to clean messy data for future use. This project taught me how to shift from narrow to wide-form data and aggregate data frames to build compelling visualizations.
