@@ -1,6 +1,9 @@
 # Data Tidying and Visualization 
 This project is a data tidying and visualization notebook exploring how federal research and development budgets vary by department as well as alongside overall GDP growth.
 
+<img width="1240" height="670" alt="image" src="https://github.com/user-attachments/assets/f077f7c0-85f5-4976-a86f-17c7702a2649" />
+
+
 ## Tools Used:
 📌Pandas\
 📌Seaborn\
