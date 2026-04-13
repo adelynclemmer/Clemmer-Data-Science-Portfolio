@@ -33,3 +33,16 @@ Link: [https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main
 
 ✅ Compliments Porflio ✅  
 All data scientists must demonstrate the ability to clean messy data for future use. This project taught me how to shift from narrow to wide-form data and aggregate data frames to build compelling visualizations.
+
+## Tidy Data Project
+<img width="2658" height="1124" alt="image" src="https://github.com/user-attachments/assets/01520cfe-8d73-43e7-910f-01a47ec912b9" />
+Link: [https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main/tidy_data_project]
+
+- Builds an interactive Streamlit platform where users can upload a dataset and explore it through summary statistics, missing value analysis, and data types
+- Implements three machine learning models: Simple Linear Regression, Decision Tree Classification, and Logistic Regression with feature and target variable selection
+- Hyperparameter tuning controls through the sidebars to observe how parameter choices affect model performance
+- Evaluate each model with residual plots and R² for regression, confusion matrices, ROC curves, and metrics for classification models
+
+
+✅ Compliments Portfolio ✅
+This project developed my ability to bridge the gap between predictive model theory and user-implementable tools. Evaluating a model's performance metrics after adjusting hyperparameters also indicates the ability to construct models with stronger or weaker fits.
