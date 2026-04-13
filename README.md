@@ -1,5 +1,5 @@
 # Clemmer-Data-Science-Portfolio
-✍️ Technical Skills: Learning Python & R  
+✍️ Technical Skills: Python & R  
 🌎 Soft Skills: Team Leadership, Public Speaking, Communication
 
 # Education:
@@ -13,6 +13,7 @@ I seek to develop technical skills and use new tools to uncover insights in the 
 Summary of completed projects:
 Basic Streamlit Dashboard - Interactive customer preference data visualization with Streamlit 
 Tidy Data Project - Tidying, performing exploratory analysis, and building visualizations for federal R&D budgets
+Machine Learning Project - Interactive dashboard, machine learning model evaluation, data display, hyperparameter tuning
 
 ## Basic Streamlit Dashboard
 <img width="1536" height="1132" alt="image" src="https://github.com/user-attachments/assets/96bbaf96-8341-4faa-bedd-ea47f9c0401b" />\
