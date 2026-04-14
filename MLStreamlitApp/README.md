@@ -1,9 +1,9 @@
 # Machine Learning Project 
-In traditional programming humans provide the input and state rules for computers to execute. However, machine learning takes human inputs and outputs (through data and parameter setting) to create the rules that connect the data points themselves. This is done with the final goal of building a computers framework for prediction or decison that is applicable to future information.
+In traditional programming, humans provide the input and state rules for computers to execute. However, machine learning takes human inputs and outputs (through data and parameter settings) to create the rules that connect the data points. This is done with the final goal of building a computer framework for prediction or decision-making that is applicable to future information.
 
-<img width="818" height="566" alt="image" src="https://github.com/user-attachments/assets/af7b087d-049e-4cf3-9904-bc6dd184c0fa" />
+<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/af7b087d-049e-4cf3-9904-bc6dd184c0fa" />
 
-In this integrated streamlit dashboard we allow users to upload their own dataset to train a machine learning model with. We allow for the specification of hyperparameters, then evaluate the performance based on metrics that correspond to the model of choice.
+In this integrated Streamlit dashboard, we allow users to upload their own dataset to train a machine learning model. We allow for the specification of hyperparameters, then evaluate the performance based on metrics that correspond to the model of choice.
 
 <img width="1240" height="670" alt="image" src="https://github.com/user-attachments/assets/f077f7c0-85f5-4976-a86f-17c7702a2649" />
 
