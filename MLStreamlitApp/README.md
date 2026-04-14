@@ -3,7 +3,7 @@ In traditional programming, humans provide the input and state rules for compute
 
 <div align="center">
 <img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/af7b087d-049e-4cf3-9904-bc6dd184c0fa" />
-<div>
+<div><div>
   
 In this integrated Streamlit dashboard, we allow users to upload their own dataset to train a machine learning model. We allow for the specification of hyperparameters, then evaluate the performance based on metrics that correspond to the model of choice.
 
