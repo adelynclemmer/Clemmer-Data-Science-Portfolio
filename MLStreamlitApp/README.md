@@ -7,8 +7,6 @@ In this integrated Streamlit dashboard, we allow users to upload their own datas
 
 <img width="2658" height="1124" alt="image" src="https://github.com/user-attachments/assets/01520cfe-8d73-43e7-910f-01a47ec912b9" />
 
-
-
 ## Tools Used:
 📌Pandas\
 📌Seaborn\
@@ -37,14 +35,12 @@ The purpose is to "measure if both recall and precision are high, and to ring a 
 
 ## Interpreting ROC Curves and Confusion Matrix
 <img width="1320" height="646" alt="image" src="https://github.com/user-attachments/assets/1840dad5-ed06-457a-9a55-4d23ed263860" />
-✅ ***Confusion Matrix:***\
-Separates a model's predictions into four categories based on predicted/ actual positives/negatives
-
 ✅ ***ROC Curces:***\
 Plots the rate of true positives versus the false positive rate at various thresholds (the probability cutoff to make a classification)\
 The closer the curve hugs the top left corner, the better the model
 
-In logistic regression and decision trees, we use these visual representations of our model's performance to look past accuracy and see where a model can be wrong.
+✅ ***Confusion Matrix:***\
+Separates a model's predictions into four categories based on predicted/ actual positives/negatives. A strong model has high numbers along the diagonal and low numbers in the off-diagonal cells (false positives and false negatives). 
 
 ✅ ***Residual Plot:***\
 Plots the difference between the predicted  and the actual values.\
