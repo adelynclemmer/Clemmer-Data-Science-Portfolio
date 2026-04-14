@@ -18,7 +18,7 @@ In this integrated Streamlit dashboard, we allow users to upload their own datas
 📌graphviz
 
 
-## The Key Metrics Used for Evaluation are
+## The Key Visualizations Used for Evaluation are
 ✅ ***Accuracy: Overall proportion of correct predictions***\
 Tells us how well the model performs overall, but does not distinguish between the types of errors being made
 
@@ -44,7 +44,11 @@ Separates a model's predictions into four categories based on predicted/ actual 
 Plots the rate of true positives versus the false positive rate at various thresholds (the probability cutoff to make a classification)\
 The closer the curve hugs the top left corner, the better the model
 
-We use these visual representations of our model's performance to look past accuracy and see where a model can be wrong.
+In logistic regression and decision trees, we use these visual representations of our model's performance to look past accuracy and see where a model can be wrong.
+
+✅ ***Residual Plot:***\
+Plots the difference between the predicted  and the actual values.\
+The closer the points are scattered randomly around zero, the better the model's fit. Patterns or curves in the plot means the model does not\ fully capture the relationship in the data
 
 
 
