@@ -24,7 +24,7 @@ from sklearn.model_selection import train_test_split
 
 
 # -- ------------------------- Step 2: Build Streamlit App Layout ------------------------- #
-# Add Main Title and Descriptions
+# Add Main Title and Descriptions to streamlit interface
 t1, t2 = st.columns((1,5)) 
 t1.image('images/cartoon-robot-clipart-xl.png', width =200)
 t2.title("Exploratory Data Analysis and Machine Learning Models")
