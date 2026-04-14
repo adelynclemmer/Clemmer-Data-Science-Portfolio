@@ -43,6 +43,9 @@ if uploaded_file is not None:
             df = pd.read_csv(uploaded_file)
         else:
             df = pd.read_excel(uploaded_file)
+    except Exception as e:
+        st.error(f"Error loading file: {e}")
+        st.stop()
 
         # Show the first 100 colums of the data
         st.dataframe(df.head(100))
@@ -50,24 +53,13 @@ if uploaded_file is not None:
         # Sidebar model choices that need df
         choice = st.sidebar.selectbox("Menu of Model Types", ["Simple Linear Regression", "Logistic Regression", "Decision Tree"])
 
-        if choice == "Simple Linear Regression":
-            feature_vars = st.selectbox("Select Feature Variable", df.columns)
-            target_vars = st.selectbox("Select Target Variable", df.columns)
-
-        elif choice == "Logistic Regression":
-             target_var_log = st.selectbox("Select Target Variable", df.columns)
-             feature_var_log = st.multiselect("Select Feature Variable", df.columns)
-
-        elif choice == "Decision Tree":
-            target_var = st.selectbox("Select Target Variable", df.columns)
-            feature_var = st.multiselect("Select Feature Variable", df.columns)
-
     # Output an error message if file is not a csv or excel file or if there is an error
     except Exception as e:
         st.error(f"Error loading file: {e}")
 
 else:
     st.info("Please upload a CSV or Excel file to begin.")
+
 
 
 # Display the users dataframe for visability 
@@ -142,6 +134,10 @@ with st.expander("Machine Learning Models"):
 
         st.subheader("Simple Linear Regression")
         st.text("Select the target variable and the feature variable to build a simple linear regression model.")
+
+        feature_vars = st.selectbox("Select Feature Variable", df.columns)
+        target_vars = st.selectbox("Select Target Variable", df.columns)
+
 
         # Create a new dataframe with only the selected feature and target variables and drop any rows with missing values
         X = df[[feature_vars]]
@@ -255,6 +251,9 @@ with st.expander("Machine Learning Models"):
             min_value=2, max_value=20, value=2, step=1,
         )
 
+        target_var = st.selectbox("Select Target Variable", df.columns)
+        feature_var = st.multiselect("Select Feature Variable", df.columns)
+
 
         if feature_var: 
             # Take in the chosen hyperparameters and selected features and target variables
@@ -365,7 +364,9 @@ with st.expander("Machine Learning Models"):
         st.text("Select the target variable and feature variables to build a Logistic Regression model.")
 
         #Select particular features and target variable for the model
-       
+        target_var_log = st.selectbox("Select Target Variable", df.columns)
+        feature_var_log = st.multiselect("Select Feature Variable", df.columns)
+
         # clean the data by dropping any rows with missing values in the selected feature and target variables
         if feature_var_log:
             data_clean_log = df[feature_var_log + [target_var_log]].dropna()
@@ -463,4 +464,5 @@ with st.expander("Machine Learning Models"):
                        
                     # Display ROC plot in Streamlit
                     st.pyplot(fig_roc, use_container_width=True)
-                        
+
+
