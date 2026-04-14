@@ -1,14 +1,13 @@
-# Machine Learning Project 
+# Machine Learning Project Overveiw
 In traditional programming, humans provide the input and state rules for computers to execute. However, machine learning takes human inputs and outputs (through data and parameter settings) to create the rules that connect the data points. This is done with the final goal of building a computer framework for prediction or decision-making that is applicable to future information.
 
 <p align="center">
-<img width="150" alt="image" src="https://github.com/user-attachments/assets/af7b087d-049e-4cf3-9904-bc6dd184c0fa" />
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/af7b087d-049e-4cf3-9904-bc6dd184c0fa" />
 </p>
 
+In this integrated Streamlit dashboard, users can upload their own dataset to train a machine learning model. We allow for the specification of hyperparameters, then evaluate the performance based on metrics that correspond to the model of choice.
 
-In this integrated Streamlit dashboard, we allow users to upload their own dataset to train a machine learning model. We allow for the specification of hyperparameters, then evaluate the performance based on metrics that correspond to the model of choice.
-
-<img width="2658" height="1124" alt="image" src="https://github.com/user-attachments/assets/01520cfe-8d73-43e7-910f-01a47ec912b9" />
+<img width="2458" height="1094" alt="image" src="https://github.com/user-attachments/assets/01520cfe-8d73-43e7-910f-01a47ec912b9" />
 
 ## Tools Used:
 📌Pandas\
@@ -18,8 +17,7 @@ In this integrated Streamlit dashboard, we allow users to upload their own datas
 📌Sklearn\
 📌graphviz
 
-
-## The Key Visualizations Used for Evaluation are
+## The Key Visualizations Used for Evaluation Are:
 ✅ ***Accuracy: Overall proportion of correct predictions***\
 Tells us how well the model performs overall, but does not distinguish between the types of errors being made
 
@@ -27,7 +25,7 @@ Tells us how well the model performs overall, but does not distinguish between t
 Guards against false positives, but does not think about the positive cases it missed entirely
 
 ✅ Recall: Of all actual positives, how many did the model catch\
-Guards against false negatives, but it does not think about how many false alarms made in the process
+Guards against false negatives, but it does not think about how many false alarms are made in the process
 
 ✅ F-1 Scores: "Harmonic mean" of precision and recall\
 The purpose is to "measure if both recall and precision are high, and to ring a bell when one of these two The scores are low" (Grokking).
@@ -37,7 +35,7 @@ The purpose is to "measure if both recall and precision are high, and to ring a 
 ✅ RMSE: The average size of prediction errors
 
 ## Interpreting ROC Curves and Confusion Matrix
-<img width="1320" height="646" alt="image" src="https://github.com/user-attachments/assets/1840dad5-ed06-457a-9a55-4d23ed263860" />
+<img width="1120" height="446" alt="image" src="https://github.com/user-attachments/assets/1840dad5-ed06-457a-9a55-4d23ed263860" />
 
 ✅ ***ROC Curces:***\
 Plots the rate of true positives versus the false positive rate at various thresholds (the probability cutoff to make a classification)\
