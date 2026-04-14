@@ -44,7 +44,9 @@ The closer the curve hugs the top left corner, the better the model
 ✅ ***Confusion Matrix:***\
 Separates a model's predictions into four categories based on predicted/ actual positives/negatives. A strong model has high numbers along the diagonal and low numbers in the off-diagonal cells (false positives and false negatives). 
 
-<img width="818" height="596" alt="image" src="https://github.com/user-attachments/assets/a26d2228-e841-49b3-896b-0462eb1c1ba2" />
+<p align="center">
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/a26d2228-e841-49b3-896b-0462eb1c1ba2" />
+</p>
 
 ✅ ***Residual Plot:***\
 Plots the difference between the predicted  and the actual values. The closer the points are scattered randomly around zero, the better the model's fit. However, patterns or curves in the plot indicate that the model does not fully capture the relationship in the data
