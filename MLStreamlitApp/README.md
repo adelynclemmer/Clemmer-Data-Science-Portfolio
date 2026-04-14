@@ -34,7 +34,7 @@ The purpose is to "measure if both recall and precision are high, and to ring a 
 
 ✅ RMSE: The average size of prediction errors
 
-## Interpreting ROC Curves and Confusion Matrix
+## Interpreting Evaluation Visuals
 <img width="1120" height="446" alt="image" src="https://github.com/user-attachments/assets/1840dad5-ed06-457a-9a55-4d23ed263860" />
 
 ✅ ***ROC Curces:***\
@@ -44,7 +44,7 @@ The closer the curve hugs the top left corner, the better the model
 ✅ ***Confusion Matrix:***\
 Separates a model's predictions into four categories based on predicted/ actual positives/negatives. A strong model has high numbers along the diagonal and low numbers in the off-diagonal cells (false positives and false negatives). 
 
-<img width="1318" height="1096" alt="image" src="https://github.com/user-attachments/assets/a26d2228-e841-49b3-896b-0462eb1c1ba2" />
+<img width="1018" height="796" alt="image" src="https://github.com/user-attachments/assets/a26d2228-e841-49b3-896b-0462eb1c1ba2" />
 
 ✅ ***Residual Plot:***\
 Plots the difference between the predicted  and the actual values. The closer the points are scattered randomly around zero, the better the model's fit. However, patterns or curves in the plot indicate that the model does not fully capture the relationship in the data
