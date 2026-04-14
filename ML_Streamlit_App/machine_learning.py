@@ -100,9 +100,6 @@ if uploaded_file is not None:
             dtypes = pd.DataFrame({"Column": df.columns, "Data Type": df.dtypes.values})
             st.dataframe(dtypes, use_container_width=True)
 
-else:
-    # If no file is uploaded, display a warning message prompting the user to upload a better file 
-    st.warning("Please upload a CSV or Excel file to begin")
 
 # ---------------------- Steps 3-5: Model Building and Evaluation ------------------------#
 # Create an expander to show the model building and evaluation section of the app. 
