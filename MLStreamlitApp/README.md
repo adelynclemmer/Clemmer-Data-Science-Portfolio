@@ -45,7 +45,7 @@ Separates a model's predictions into four categories based on predicted/ actual 
 
 ✅ ***Residual Plot:***\
 Plots the difference between the predicted  and the actual values.\
-The closer the points are scattered randomly around zero, the better the model's fit. Patterns or curves in the plot means the model does not\ fully capture the relationship in the data
+The closer the points are scattered randomly around zero, the better the model's fit. Patterns or curves in the plot means the model does not fully capture the relationship in the data
 
 
 
