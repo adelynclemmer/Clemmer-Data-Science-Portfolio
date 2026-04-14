@@ -9,7 +9,7 @@
 
 # ------------------------- Step 1: Import Libraries ------------------------- #
 # Import all necessary libraries for data manipulation, visualization, and machine learning.
-from turtle import lt
+
 import streamlit as st
 import numpy as np
 import pandas as pd
