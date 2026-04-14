@@ -28,7 +28,7 @@ Guards against false negatives, but it does not think about how many false alarm
 ✅ F-1 Scores: "Harmonic mean" of precision and recall\
 The purpose is to "measure if both recall and precision are high, and to ring a bell when one of these two The scores are low" (Grokking).\
 ✅ R^2 Score: Proportion of variance in the target explained by the model\
-✅ RMSE:The average size of prediction errors 
+✅ RMSE:The average size of prediction errors\ 
 
 ## Interpreting ROC Curves and Confusion Matrix
 <img width="1320" height="646" alt="image" src="https://github.com/user-attachments/assets/1840dad5-ed06-457a-9a55-4d23ed263860" />
