@@ -25,8 +25,8 @@ from sklearn.model_selection import train_test_split
 
 # -- ------------------------- Step 2: Build Streamlit App Layout ------------------------- #
 # Add Main Title and Descriptions to streamlit interface
-title("Exploratory Data Analysis and Machine Learning Models")
-markdown(" **Name:** Adelyn Clemmer **| Class:** Intro to Data Science ")
+st.title("Exploratory Data Analysis and Machine Learning Models")
+st.markdown(" **Name:** Adelyn Clemmer **| Class:** Intro to Data Science ")
 st.text("Upload a CSV or Excel file to get started. Files with size over 10,000KB will cause program to run slow.")
 
 # Allow user to uploead files
