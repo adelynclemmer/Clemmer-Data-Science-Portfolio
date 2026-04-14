@@ -35,6 +35,7 @@ The purpose is to "measure if both recall and precision are high, and to ring a 
 
 ## Interpreting ROC Curves and Confusion Matrix
 <img width="1320" height="646" alt="image" src="https://github.com/user-attachments/assets/1840dad5-ed06-457a-9a55-4d23ed263860" />
+
 ✅ ***ROC Curces:***\
 Plots the rate of true positives versus the false positive rate at various thresholds (the probability cutoff to make a classification)\
 The closer the curve hugs the top left corner, the better the model
