@@ -32,20 +32,43 @@ st.text("Upload a CSV or Excel file to get started. Files with size over 10,000K
 # Allow user to uploead files
 uploaded_file = st.sidebar.file_uploader("Upload file", type=["csv", "xlsx"])
 
-# Test if file is an excel or csv file and load it into a dataframe
-try:
-    if uploaded_file is not None:
-        # Check file extension and load based on type
+
+# Test if the there is a file uploaded
+if uploaded_file is not None:
+    
+    # test if the file is a csv or excel file and load it into a dataframe. 
+    # If there is an error loading the file, display an error message to the user.
+    try:
         if uploaded_file.name.endswith(".csv"):
             df = pd.read_csv(uploaded_file)
         else:
             df = pd.read_excel(uploaded_file)
 
+        # Show the first 100 colums of the data
+        st.dataframe(df.head(100))
 
+        # Sidebar model choices that need df
+        choice = st.sidebar.selectbox("Menu of Model Types", ["Simple Linear Regression", "Logistic Regression", "Decision Tree"])
 
-# Output an error message if file is not a csv or excel file or if there is an error
-except Exception as e:
-    st.error(f"Error loading file: {e}")
+        if choice == "Simple Linear Regression":
+            feature_vars = st.selectbox("Select Feature Variable", df.columns)
+            target_vars = st.selectbox("Select Target Variable", df.columns)
+
+        elif choice == "Logistic Regression":
+             target_var_log = st.selectbox("Select Target Variable", df.columns)
+             feature_var_log = st.multiselect("Select Feature Variable", df.columns)
+
+        elif choice == "Decision Tree":
+            target_var = st.selectbox("Select Target Variable", df.columns)
+            feature_var = st.multiselect("Select Feature Variable", df.columns)
+
+    # Output an error message if file is not a csv or excel file or if there is an error
+    except Exception as e:
+        st.error(f"Error loading file: {e}")
+
+else:
+    st.info("Please upload a CSV or Excel file to begin.")
+
 
 # Display the users dataframe for visability 
 if uploaded_file is not None:
@@ -120,9 +143,6 @@ with st.expander("Machine Learning Models"):
         st.subheader("Simple Linear Regression")
         st.text("Select the target variable and the feature variable to build a simple linear regression model.")
 
-        # Create two select boxes to allow the user to select the feature variable and the target variable from the dataframe columns
-        feature_vars = st.selectbox("Select Feature Variable", df.columns)
-        target_vars = st.selectbox("Select Target Variable", df.columns)
         # Create a new dataframe with only the selected feature and target variables and drop any rows with missing values
         X = df[[feature_vars]]
         y = df[target_vars]
@@ -236,12 +256,6 @@ with st.expander("Machine Learning Models"):
         )
 
 
-        # Create select boxes to allow the user to select the target variable and feature variables from the dataframe columns
-        # The target variable is the variable we want to predict, and the feature variables are the variables we use to make predictions.
-        target_var = st.selectbox("Select Target Variable", df.columns)
-        feature_var = st.multiselect("Select Feature Variable", df.columns)
-
-
         if feature_var: 
             # Take in the chosen hyperparameters and selected features and target variables
             model = DecisionTreeClassifier(max_depth=max_depth, min_samples_split=min_samples_split, random_state=42)
@@ -351,9 +365,7 @@ with st.expander("Machine Learning Models"):
         st.text("Select the target variable and feature variables to build a Logistic Regression model.")
 
         #Select particular features and target variable for the model
-        target_var_log = st.selectbox("Select Target Variable", df.columns)
-        feature_var_log = st.multiselect("Select Feature Variable", df.columns)
-
+       
         # clean the data by dropping any rows with missing values in the selected feature and target variables
         if feature_var_log:
             data_clean_log = df[feature_var_log + [target_var_log]].dropna()
