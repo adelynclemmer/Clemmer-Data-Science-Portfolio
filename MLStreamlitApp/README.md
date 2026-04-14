@@ -20,15 +20,19 @@ In this integrated Streamlit dashboard, we allow users to upload their own datas
 
 ## The Key Metrics Used for Evaluation are
 ✅ ***Accuracy: Overall proportion of correct predictions***\
-Tells us how well the model performs overall, but does not distinguish between the types of errors being made\
+Tells us how well the model performs overall, but does not distinguish between the types of errors being made
+
 ✅ Precision: Of all positive predictions, how many were actually correct\
-Guards against false positives, but does not think about the positive cases it missed entirely\
+Guards against false positives, but does not think about the positive cases it missed entirely
+
 ✅ Recall: Of all actual positives, how many did the model catch\
-Guards against false negatives, but it does not think about how many false alarms made in the process\
+Guards against false negatives, but it does not think about how many false alarms made in the process
+
 ✅ F-1 Scores: "Harmonic mean" of precision and recall\
-The purpose is to "measure if both recall and precision are high, and to ring a bell when one of these two The scores are low" (Grokking).\
+The purpose is to "measure if both recall and precision are high, and to ring a bell when one of these two The scores are low" (Grokking).
+
 ✅ R^2 Score: Proportion of variance in the target explained by the model\
-✅ RMSE:The average size of prediction errors\ 
+✅ RMSE:The average size of prediction errors
 
 ## Interpreting ROC Curves and Confusion Matrix
 <img width="1320" height="646" alt="image" src="https://github.com/user-attachments/assets/1840dad5-ed06-457a-9a55-4d23ed263860" />
