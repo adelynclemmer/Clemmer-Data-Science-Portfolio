@@ -19,13 +19,13 @@ In this integrated Streamlit dashboard, we allow users to upload their own datas
 
 
 ## The Key Metrics Used for Evaluation are
-✅ Accuracy: Overall proportion of correct predictions
+✅ Accuracy: Overall proportion of correct predictions\
 Tells us how well the model performs overall, but does not distinguish between the types of errors being made\
-✅ Precision: Of all positive predictions, how many were actually correct
-✅ Recall: Of all actual positives, how many did the model catch
-✅ F-1 Scores: "Harmonic mean" of precision and recall
-✅ R^2 Score: Proportion of variance in the target explained by the model
-✅ RMSE: 
+✅ Precision: Of all positive predictions, how many were actually correct\
+✅ Recall: Of all actual positives, how many did the model catch\
+✅ F-1 Scores: "Harmonic mean" of precision and recall\
+✅ R^2 Score: Proportion of variance in the target explained by the model\
+✅ RMSE:\ 
 
 ## Interpreting ROC Curves and Confusion Matrix
 
