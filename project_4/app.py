@@ -1,10 +1,13 @@
 
-    # Import the needed libraries 
+# Import the needed libraries 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 
+# add line chart for silhoutte score
+# add a link in profile 
+# Thee PCA shows the clusters that we are seeing 
 
 # -- ------------------------- Step 1: Build Streamlit App Layout ------------------------- #
 # Add Main Title and Descriptions to streamlit interface
@@ -14,7 +17,7 @@ st.text("Upload a CSV or Excel file to get started. Files with size over 10,000K
 
 # Allow user to uploead files
 uploaded_file = st.sidebar.file_uploader("Upload file", type=["csv", "xlsx"])
-tab1, tab2, tab3 = st.tabs(["🤍Your Dataframe🤍", "🤍Your Features🤍", "🤍 Hierarchical Clustering Model🤍"]) 
+tab1, tab2, tab3, tab4 = st.tabs(["🤍Your Dataframe🤍", "🤍Your Features🤍", "🤍 Hierarchical Clustering Model🤍", "🤍 🤍"]) 
     # ------------------------- Step 2: Load Uploaded Data ------------------------- #
 
 if uploaded_file is not None:
@@ -163,14 +166,54 @@ if uploaded_file is not None:
     from scipy.cluster.hierarchy import linkage, dendrogram
 
     with tab3:
+        with st.expander("🤍 What is Hierarchical Clustering 🤍"):
+            col1, col2 = st.columns([1, 1])
+            
+            with col1:
+                st.markdown("### What is Hierarchical Clustering?")
+                st.markdown("""
+                Hierarchical clustering builds a **Dendrogram of Clusters** 
+                by merging similar observations together.
+                
+                This app uses **Agglomerative/Bottom-up** clustering where:
+                - Each observation begins as its own cluster.  
+                - The two most similar clusters become merged at every step until everything is one cluster.
+                
+                In the the dendrogram visual 
+                the height of each branch represents the **distance between the 
+                clusters that were joined at that step.**
+                """)
 
+            with col2:
+
+                st.info("""
+                **Why Use Hierarchical Clustering?**
+                
+                Heirarchal clustering shows the **multi-level strucutre in data that is unlabeled.**
+                That means it can group data into variables without a fixed number of clusters (k).
+                This model can help us find patterns or outliers for that may require further analysis 
+                when preprocessing in our data set.
+
+                """)
+
+                st.info("""
+                **Benefits of the Model**
+                
+                - We do not have to specify the number of clusters beforehand
+                - Still applicable for may distance metrics 
+                - Paractical in real world settings including market sizing, gene studies, and topic grouping
+                """)
+
+
+        
+        # Compute the linkage matrix
+        st.subheader("Hierarchical Clustering Results")
         label_col = st.selectbox(
             "Label points in diagram by __________:",
             options=["None"] + df.columns.tolist(),
             index=0
         )
-            
-        # Compute the linkage matrix
+          
         Z = linkage(X_scaled, method="ward")
 
         fig, ax = plt.subplots(figsize=(20, 7))
@@ -183,246 +226,151 @@ if uploaded_file is not None:
         st.pyplot(fig)
         plt.close(fig)
 
+        with st.expander("🤍Dendrogram Overview🤍"):
+            st.markdown("""
+            A **full dendrogram is the complete merge history of your data.**
+            - The bottom **leafs** are all one observation
+            - Each **horizontal line** is a merge between two clusters
+            - The **height of the line** is the distance between what was merged
+            - **Large vertical gap** are cutting where their are the most natural clusters
+            """)
+
             # ------------------------- Step 8: Elbow + Silhouette Analysis ------------------------- #
 
-        from sklearn.cluster import KMeans
-        from sklearn.metrics import silhouette_score, silhouette_samples
-        import matplotlib.cm as cm
+        from sklearn.cluster import AgglomerativeClustering
+        from sklearn.metrics import silhouette_score
 
-        st.subheader("Cluster Count Analysis")
-
-
-        inertias = []
+        # Range of candidate cluster counts
+        k_range = range(2, 11)
         sil_scores = []
-        k_range = range(2, 20) ##what should I set this as??
 
         for k in k_range:
-            km = KMeans(n_clusters=k, random_state=42, n_init=10)
-            labels = km.fit_predict(X_scaled)
-            inertias.append(km.inertia_)
-            sil_scores.append(silhouette_score(X_scaled, labels))
+            labels = AgglomerativeClustering(n_clusters=k, linkage="ward").fit_predict(X_scaled)
+            score = silhouette_score(X_scaled, labels)
+            sil_scores.append(score)
 
-        best_k = list(k_range)[sil_scores.index(max(sil_scores))]
+        # Plot the curve
+        plt.figure(figsize=(7, 4))
+        plt.plot(list(k_range), sil_scores, marker="o")
+        plt.xticks(list(k_range))
+        plt.xlabel("Number of Clusters (k)")
+        plt.ylabel("Average Silhouette Score")
+        plt.title("Silhouette Analysis for Agglomerative (Ward) Clustering")
+        plt.grid(True, alpha=0.3)
+        plt.show()
 
-        col1, col2 = st.columns(2)
+        # Print best k
+        best_k = list(k_range)[np.argmax(sil_scores)]
+        #print(f"Best k by silhouette: {best_k}  (score={max(sil_scores):.3f})")
+        
+        
+    # --- Silhouette Diagram ---
+    with st.expander("🤍 Hypertune by K 🤍"):
+    
+    # ---- NEW: Hypertune k ---- #
+        st.subheader("Hypertune Number of Clusters (k)")
 
+        col1, col2 = st.columns([2, 1])
         with col1:
-            st.metric("Recommended k (best silhouette)", best_k)
+            chosen_k = st.slider(
+                "Choose number of clusters (k)",
+                min_value=2, max_value=20, value=best_k,
+                help="Defaults to recommended k — drag to override."
+            )
         with col2:
-            st.metric("Best silhouette score", f"{max(sil_scores):.3f}")
+            st.metric("Recommended k", best_k)
+            st.metric("Your chosen k", chosen_k)
 
-        # --- Elbow Curve ---
-        with st.expander("🤍 Elbow Curve & Silhouette Scores 🤍"):
-            fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 
-            axes[0].plot(list(k_range), inertias, marker="o", color="steelblue")
-            axes[0].axvline(best_k, color="red", linestyle="--", alpha=0.6, label=f"k={best_k}")
-            axes[0].set_title("Elbow Curve")
-            axes[0].set_xlabel("Number of Clusters (k)")
-            axes[0].set_ylabel("Inertia")
-            axes[0].legend()
+        # PCA at chosen_k
+        chosen_labels = AgglomerativeClustering(n_clusters=chosen_k, linkage="ward").fit_predict(X_scaled)
 
-            axes[1].bar(list(k_range), sil_scores, color="mediumseagreen", alpha=0.8)
-            axes[1].axhline(max(sil_scores), color="darkgreen", linestyle="--", alpha=0.6)
-            axes[1].set_title("Silhouette Score vs k")
-            axes[1].set_xlabel("Number of Clusters (k)")
-            axes[1].set_ylabel("Silhouette Score")
-            axes[1].set_xticks(list(k_range))
+        fig, ax = plt.subplots(figsize=(10, 7))
+        scatter = ax.scatter(X_pca[:, 0], X_pca[:, 1], c=chosen_labels, cmap='viridis',
+                            s=60, edgecolor='k', alpha=0.7)
+        ax.set_xlabel('Principal Component 1')
+        ax.set_ylabel('Principal Component 2')
+        ax.set_title(f'Agglomerative Clustering @ k={chosen_k}')
+        ax.legend(*scatter.legend_elements(), title="Clusters")
+        ax.grid(True)
 
-            plt.tight_layout()
-            st.pyplot(fig)
-            plt.close(fig)
+        if label_col != "None":
+            for i, label in enumerate(df[label_col].astype(str).values):
+                ax.annotate(label[:4], (X_pca[i, 0], X_pca[i, 1]),
+                            fontsize=7, alpha=0.75, xytext=(4, 2),
+                            textcoords="offset points")
 
-            km_best = KMeans(n_clusters=best_k, random_state=42, n_init=10)
-            cluster_labels = km_best.fit_predict(X_scaled)
-            sample_sil = silhouette_samples(X_scaled, cluster_labels)
+        plt.tight_layout()
+        st.pyplot(fig)
+        plt.close(fig)
 
-            fig, ax = plt.subplots(figsize=(10, 6))
-            y_lower = 10
-            colors = cm.tab10(np.linspace(0, 0.5, best_k))
+        with st.expander("💡 PCA Description"):
+            st.markdown("""
+            This **PCA scatter plot** plots our high-dimensional data into 2D for graph for visualization.
+            - Each of these **dot** represents a row in the dataset
+            - Each **Color** indicates which cluster it belongs to
+            - When there is **Tight, well-separated blobs** this means the data has indicate strong clusters
+            - When there is **Overlapping colors** the clusters may not be well defined at this k
+                        
+            Try a k value that is not the recommended level, and see how they merge!
+            """)
 
-            for i in range(best_k):
-                ith_sil = np.sort(sample_sil[cluster_labels == i])
-                size_i = ith_sil.shape[0]
-                y_upper = y_lower + size_i
-                ax.fill_betweenx(np.arange(y_lower, y_upper), 0, ith_sil,
-                                alpha=0.7, color=colors[i], label=f"Cluster {i+1}")
-                y_lower = y_upper + 10
 
-            avg = np.mean(sample_sil)
-            ax.axvline(avg, color="red", linestyle="--", label=f"Avg score: {avg:.3f}")
-            ax.set_title(f"Silhouette Diagram — k={best_k}")
-            ax.set_xlabel("Silhouette coefficient")
-            ax.set_ylabel("Cluster")
-            ax.set_yticks([])
-            ax.legend(loc="lower right")
-            plt.tight_layout()
-            st.pyplot(fig)
-            plt.close(fig)
+    with st.expander("🤍 Silhouette Analysis 🤍"):
+
+        from sklearn.metrics import silhouette_score, silhouette_samples
+
+        sample_sil = silhouette_samples(X_scaled, chosen_labels)
+        avg_sil = silhouette_score(X_scaled, chosen_labels)
+        max_sil = max(sil_scores)
+        max_sil_k = list(k_range)[np.argmax(sil_scores)]
+
+        # --- Metric Cards ---
+        col1, col2, col3, col4 = st.columns(4)
+        col1.metric("Chosen k", chosen_k)
+        col2.metric("Chosen k silhouette score", f"{avg_sil:.3f}")
+        col3.metric("Best k", max_sil_k)
+        col4.metric("Best silhouette score", f"{max_sil:.3f}")
 
         # --- Silhouette Diagram ---
-        with st.expander("🤍 Hypertune by K 🤍"):
-            
-        # --- Recommended PCA Plot --- #
-            st.subheader("Recommended Clustering")
-            st.markdown(f"This is the model's suggested clustering at **k={best_k}** based on the best silhouette score.")
+        plt.figure(figsize=(7, 4))
+        plt.plot(list(k_range), sil_scores, marker="o")
+        plt.xticks(list(k_range))
+        plt.xlabel("Number of Clusters (k)")
+        plt.ylabel("Average Silhouette Score")
+        plt.title("Silhouette Analysis for Agglomerative Clustering")
+        plt.axvline(chosen_k, color="red", linestyle="--", alpha=0.6, label=f"chosen k={chosen_k}")
+        plt.axvline(max_sil_k, color="green", linestyle="--", alpha=0.6, label=f"best k={max_sil_k}")
+        plt.legend()
+        plt.grid(True, alpha=0.3)
+        plt.tight_layout()
+        st.pyplot(plt.gcf())
+        plt.close()
 
-            fig, ax = plt.subplots(figsize=(10, 7))
-            plot_colors = plt.cm.tab10.colors
-
-            for cluster_id in range(best_k):
-                mask = cluster_labels == cluster_id  # reuse cluster_labels from silhouette section
-                ax.scatter(
-                    X_pca[mask, 0], X_pca[mask, 1],
-                    label=f"Cluster {cluster_id + 1}",
-                    color=plot_colors[cluster_id % 10],
-                    s=60, alpha=0.8, edgecolors="white", linewidths=0.4
-                )
-
-            if label_col != "None":
-                for i, label in enumerate(df[label_col].astype(str).values):
-                    ax.annotate(label[:4], (X_pca[i, 0], X_pca[i, 1]),
-                                fontsize=7, alpha=0.75, xytext=(4, 2),
-                                textcoords="offset points")
-
-            ax.set_xlabel(f"First Principal Component ({var_explained[0]*100:.1f}% variance)")
-            ax.set_ylabel(f"Second Principal Component ({var_explained[1]*100:.1f}% variance)")
-            ax.set_title(f"Model Recommended Clustering — k={best_k}")
-            ax.legend(loc="best", fontsize=9)
-            ax.grid(True, linestyle="--", alpha=0.4)
-            plt.tight_layout()
-            st.pyplot(fig)
-            plt.close(fig)
-
-
-        # ---- NEW: Hypertune k ---- #
-            st.subheader("Hypertune Number of Clusters (k)")
-            st.markdown("Not happy with the model's recommendation? Choose your own k and see how the clusters change.")
-
-            col1, col2 = st.columns([2, 1])
-            with col1:
-                chosen_k = st.slider(
-                    "Choose number of clusters (k)",
-                    min_value=2, max_value=20, value=best_k,
-                    help="Defaults to recommended k — drag to override."
-                )
-            with col2:
-                st.metric("Recommended k", best_k)
-                st.metric("Your chosen k", chosen_k)
-               
-
-            # PCA at chosen_k
-            km_chosen = KMeans(n_clusters=chosen_k, random_state=42, n_init=10)
-            chosen_labels = km_chosen.fit_predict(X_scaled)
-
-            fig, ax = plt.subplots(figsize=(10, 7))
-            for cluster_id in range(chosen_k):
-                mask = chosen_labels == cluster_id
-                ax.scatter(X_pca[mask, 0], X_pca[mask, 1],
-                            label=f"Cluster {cluster_id + 1}",
-                            color=plot_colors[cluster_id % 10],
-                            s=60, alpha=0.8, edgecolors="white", linewidths=0.4)
-            if label_col != "None":
-                for i, label in enumerate(df[label_col].astype(str).values):
-                    ax.annotate(label[:4], (X_pca[i, 0], X_pca[i, 1]),
-                                fontsize=7, alpha=0.75, xytext=(4, 2),
-                                textcoords="offset points")
-            ax.set_xlabel(f"First Principal Component ({var_explained[0]*100:.1f}% variance)")
-            ax.set_ylabel(f"Second Principal Component ({var_explained[1]*100:.1f}% variance)")
-            ax.set_title(f"PCA Plot — Your Chosen k={chosen_k}")
-            ax.legend(loc="best", fontsize=9)
-            ax.grid(True, linestyle="--", alpha=0.4)
-            plt.tight_layout()
-            st.pyplot(fig)
-            plt.close(fig)
-
-
-        #--------------- max_d Hypertuning ------------------------- #
-
-        with st.expander("🤍 Hypertune by Max Distance 🤍"):
-            from scipy.cluster.hierarchy import fcluster
-
-            st.subheader("Hypertune Clusters via max_d Threshold")
-
-            st.markdown(
-                "The `max_d` threshold acts as a horizontal cut on the dendrogram — "
-                "lower values create more clusters, higher values merge them together."
-            )
-
-            # --- Plot number of clusters vs max_d ---
-            x_ = []
-            y_ = []
-            for i in range(1, 11):
-                clusters_temp = fcluster(Z, i, criterion='distance')
-                x_.append(i)
-                y_.append(len(set(clusters_temp)))
-
-            fig, ax = plt.subplots(figsize=(10, 4))
-            ax.plot(x_, y_, marker="o", color="steelblue", linewidth=2)
-            ax.set_title("Number of clusters vs max_d threshold")
-            ax.set_xlabel("max_d")
-            ax.set_ylabel("Number of clusters")
-            ax.set_ylim(0, max(y_) + 2)
-            ax.set_xlim(1, 10)
-            ax.set_xticks(range(1, 11))
-            ax.grid(True, linestyle="--", alpha=0.4)
-            plt.tight_layout()
-            st.pyplot(fig)
-            plt.close(fig)
-
-            # --- Let user pick max_d ---
-            max_d = st.slider(
-                "Select max distance threshold",
-                min_value=1,
-                max_value=10,
-                value=2,
-
-            )
-
-            # Compute clusters at chosen max_d
-            clusters_maxd = fcluster(Z, max_d, criterion='distance')
-            n_clusters_maxd = len(set(clusters_maxd))
-
+        with st.expander("💡 Silhouette Overview "):
             col1, col2 = st.columns(2)
-            col1.metric("Chosen max_d", max_d)
-            col2.metric("Resulting number of clusters", n_clusters_maxd)
 
+            with col1:
+                st.markdown("**What this chart shows**")
+                st.markdown("""
+                This plot shows the average silhouette score for each possible 
+                number of clusters (k) from 2 to 10.
 
+                - The **peak of the curve** is where clusters are most 
+                distanced from each other which becomes the model's recommended k
+                - A **higher score** means points are firmly tight when in their own 
+                cluster and seperated from neighboring clusters
+                - A **flatter curve** means k choice matters less for your data
+                """)
 
-            # --- PCA scatter colored by max_d clusters ---
-            fig, ax = plt.subplots(figsize=(10, 7))
-            colors = plt.cm.tab10.colors
+            with col2:
+                st.markdown("**Chosen k vs best k**")
+                st.markdown(f"""
+                The model for this data set recommends **k={max_sil_k}** which is displayed by the green line based on 
+                the highest silhouette score of **{max_sil:.3f}**.
 
-            for cluster_id in sorted(set(clusters_maxd)):
-                mask = clusters_maxd == cluster_id
-                ax.scatter(
-                    X_pca[mask, 0],
-                    X_pca[mask, 1],
-                    label=f"Cluster {cluster_id}",
-                    color=colors[(cluster_id - 1) % 10],
-                    s=60,
-                    alpha=0.8,
-                    edgecolors="white",
-                    linewidths=0.4
-                )
+                You have chosen **k={chosen_k}** (red line), which scores 
+                **{avg_sil:.3f}**.
+                """)
 
-            if label_col != "None":
-                for i, label in enumerate(df[label_col].astype(str).values):
-                    ax.annotate(
-                        label[:4],
-                        (X_pca[i, 0], X_pca[i, 1]),
-                        fontsize=7,
-                        alpha=0.75,
-                        xytext=(4, 2),
-                        textcoords="offset points"
-                    )
-
-            ax.set_xlabel(f"First Principal Component ({var_explained[0]*100:.1f}% variance)")
-            ax.set_ylabel(f"Second Principal Component ({var_explained[1]*100:.1f}% variance)")
-            ax.set_title(f"PCA Plot — max_d={max_d} → {n_clusters_maxd} clusters")
-            ax.legend(loc="best", fontsize=9)
-            ax.grid(True, linestyle="--", alpha=0.4)
-            plt.tight_layout()
-            st.pyplot(fig)
-            plt.close(fig)
 
