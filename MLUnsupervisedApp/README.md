@@ -2,7 +2,7 @@
 Check it out at this link: https://your-streamlit-link-here.streamlit.app/
 
 Unsupervised machine learning works with **unlabeled data** where there is no target variable to predict. 
-Instead, our goal is when using these tools is to identify hidden structures, find patterns, and
+Instead, our goal when using these tools is to identify hidden structures, find patterns, and
 group similar observations to uncover insights or aid in processing down the line! 
 This unsupervised machine learning app allows users to begin learning about two of the most popular unsupervised 
 clustering models on the data set they choose! The tool pays close attention to K (the number of clusters and offers insight 
@@ -10,7 +10,7 @@ into the impact of grouping across models and datasets.
 
 <p align="center">
 <img height="400" alt="image" src="https://github.com/user-attachments/assets/34d94c4b-7f8e-4620-8e4d-327b640952e6" />
-<img height="400" alt="image" src="[https://github.com/user-attachments/assets/eb3f9edb-ef31-47d1-8cbf-1fcde0ad8a4c](https://github.com/user-attachments/assets/3bbf52bb-f172-4bd4-9b20-4c247c043aa2)" />
+<img height="400" alt="image" src="https://github.com/user-attachments/assets/3bbf52bb-f172-4bd4-9b20-4c247c043aa2" />
 </p>
 
 
@@ -19,8 +19,9 @@ a Hierarchical and a K-Means clustering model. The app allows for hyperparameter
 through tools to control cluster numbers. The output also evaluates cluster quality using 
 metrics that help the user identify the most natural groupings in their data.
 
-<img alt="image" src="https://github.com/user-attachments/assets/c0638a78-81da-4692-8038-97d54aae0f7b" />
-
+<p align="center">
+<img height="250" alt="image" src="https://github.com/user-attachments/assets/c0638a78-81da-4692-8038-97d54aae0f7b" />
+</p>
 
 ## Tools Used:
 📌 Pandas\
@@ -30,16 +31,17 @@ metrics that help the user identify the most natural groupings in their data.
 📌 Sklearn\
 📌 Scipy
 
-## The Two Models:
+## Two Featured Models:
 ✅ ***Hierarchical (Agglomerative) Clustering:***\
-Builds clusters from the bottom up — each observation starts as its own cluster and 
-the two most similar clusters merge at every step until everything is one group. 
-Does not require a fixed k to be specified in advance.
+This unsupervised model builds clusters from the bottom up! Each observation starts as its own group, then 
+the most similar clusters merge at every step until everything is one group. We can see the process visualized
+through our diagram. Check out Streamlit to learn more!
 
 ✅ ***K-Means Clustering:***\
-Partitions data into k clusters by iteratively assigning each point to the nearest 
-centroid, then recalculating centroids as the cluster mean. Requires k to be specified 
-before the model runs.
+The K-Means model splits data into clusters by iterating to assign each data point to the nearest 
+centroid (middle of the group), then recalculating centroids as the mean of the cluster. While K-Means requires 
+k to be specified before the model runs, it has the benefit of being great at classification tasks, especially if they 
+are binary. Try it out!
 
 ## Key Visualizations Used for Evaluation:
 <img alt="image" src="YOUR_VISUALIZATION_SCREENSHOT_HERE" />
