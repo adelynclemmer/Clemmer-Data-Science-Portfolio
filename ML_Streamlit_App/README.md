@@ -1,4 +1,7 @@
 # Machine Learning Project Overview
+Check it out at think link: https://machinelearningpy-m5p8fmwgftxcd8cpzrcxoa.streamlit.app/  
+
+
 In traditional programming, humans provide the input and state rules for computers to execute. However, machine learning takes human inputs and outputs (through data and parameter settings) to create the rules that connect the data points. This is done with the final goal of building a computer framework for prediction or decision-making that is applicable to future information
 
 <p align="center">
@@ -8,7 +11,6 @@ In traditional programming, humans provide the input and state rules for compute
 In this integrated Streamlit dashboard, users can upload their own dataset to train a machine learning model. We allow for the specification of hyperparameters, then evaluate the performance based on metrics that correspond to the model of choice
 
 <img width="2458" height="1094" alt="image" src="https://github.com/user-attachments/assets/01520cfe-8d73-43e7-910f-01a47ec912b9" />
-## Check it out!! https://machinelearningpy-m5p8fmwgftxcd8cpzrcxoa.streamlit.app/
 
 ## Tools Used:
 📌Pandas\
