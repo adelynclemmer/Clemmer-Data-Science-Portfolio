@@ -1,6 +1,68 @@
-# Unsupervised Machine Learning Streamlit App
-**Name:** Adelyn Clemmer | **Class:** Intro to Data Science
+# Unsupervised Machine Learning Project Overview
+Check it out at this link: https://your-streamlit-link-here.streamlit.app/
 
-| | |
-|---|---|
-| <img width="800" alt="image" src="https://github.com/user-attachments/assets/a0ed8dbe-fb1d-4340-9549-ed26588cec57" /> | <img width="775" alt="image" src="https://github.com/user-attachments/assets/78b4c931-bfdc-472e-ac77-ab57f87ca624" /> |
+Unsupervised machine learning works with **unlabeled data** where there is no target variable to predict. 
+Instead, our goal is when using these tools is to identify hidden structures, find patterns, and
+group similar observations to uncover insights or aid in processing down the line! 
+This unsupervised machine learning app allows users to begin learning about two of the most popular unsupervised 
+clustering models on the data set they choose! The tool pays close attention to K (the number of clusters and offers insight 
+into the impact of grouping across models and datasets.
+
+<p align="center">
+<img height="400" alt="image" src="YOUR_FIRST_IMAGE_URL_HERE" />
+<img height="400" alt="image" src="YOUR_SECOND_IMAGE_URL_HERE" />
+</p>
+
+In this integrated Streamlit dashboard, users can upload their own dataset to run both 
+a Hierarchical and a K-Means clustering model. The app supports hyperparameter tuning 
+through interactive controls and evaluates cluster quality using metrics that help the 
+user identify the most natural groupings in their data.
+
+<img alt="image" src="YOUR_FULL_WIDTH_SCREENSHOT_HERE" />
+
+## Tools Used:
+📌 Pandas\
+📌 Numpy\
+📌 Matplotlib\
+📌 Streamlit\
+📌 Sklearn\
+📌 Scipy
+
+## The Two Models:
+✅ ***Hierarchical (Agglomerative) Clustering:***\
+Builds clusters from the bottom up — each observation starts as its own cluster and 
+the two most similar clusters merge at every step until everything is one group. 
+Does not require a fixed k to be specified in advance.
+
+✅ ***K-Means Clustering:***\
+Partitions data into k clusters by iteratively assigning each point to the nearest 
+centroid, then recalculating centroids as the cluster mean. Requires k to be specified 
+before the model runs.
+
+## Key Visualizations Used for Evaluation:
+<img alt="image" src="YOUR_VISUALIZATION_SCREENSHOT_HERE" />
+
+✅ ***Dendrogram:***\
+The complete merge history of your data — each leaf is one observation, each horizontal 
+line is a merge, and the height of the line represents the distance between what was joined. 
+Large vertical gaps reveal where the most natural cluster cuts exist.
+
+✅ ***PCA Scatter Plot:***\
+Projects high-dimensional data into 2D for visualization. Each dot is a row in the dataset 
+and each color indicates cluster assignment. Tight, well-separated blobs indicate strong 
+clusters while overlapping colors suggest the chosen k may not be well defined.
+
+✅ ***Elbow Method (WCSS):***\
+Plots the Within-Cluster Sum of Squares against different values of k. The optimal k sits 
+at the "elbow" where improvement begins to slow — fast to compute and best for large datasets.
+
+✅ ***Silhouette Score:***\
+Measures how similar each point is to its own cluster versus the nearest neighboring cluster. 
+Ranges from -1 to 1 — higher is better. Used alongside the Elbow Method for the most 
+robust choice of k.
+
+## 🖥️ Setup Instructions
+- Clone the repository
+- Install required packages: `pip install streamlit pandas numpy matplotlib scikit-learn scipy`
+- Run the app: `streamlit run app.py`
+- Upload a CSV or Excel file to get started
