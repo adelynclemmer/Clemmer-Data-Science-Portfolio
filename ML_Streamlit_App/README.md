@@ -1,5 +1,5 @@
 # Machine Learning Project Overview
-Check it out at think link: https://machinelearningpy-m5p8fmwgftxcd8cpzrcxoa.streamlit.app/  
+Check it out at this link: https://machinelearningpy-m5p8fmwgftxcd8cpzrcxoa.streamlit.app/  
 
 
 In traditional programming, humans provide the input and state rules for computers to execute. However, machine learning takes human inputs and outputs (through data and parameter settings) to create the rules that connect the data points. This is done with the final goal of building a computer framework for prediction or decision-making that is applicable to future information
