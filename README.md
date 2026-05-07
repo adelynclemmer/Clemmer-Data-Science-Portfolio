@@ -36,9 +36,9 @@ Link: [https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main
 ✅ Compliments Porflio ✅  
 All data scientists must demonstrate the ability to clean messy data for future use. This project taught me how to shift from narrow to wide-form data and aggregate data frames to build compelling visualizations.
 
-## Tidy Data Project
+## Machine Learning Project
 <img width="2658" height="1124" alt="image" src="https://github.com/user-attachments/assets/01520cfe-8d73-43e7-910f-01a47ec912b9" />
-Link: [https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main/tidy_data_project]
+Link: [https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main/tidy_data_project]  
 Streamlit Cloud link: https://machinelearningpy-m5p8fmwgftxcd8cpzrcxoa.streamlit.app/ 
 
 - Builds an interactive Streamlit platform where users can upload a dataset and explore it through summary statistics, missing value analysis, and data types
@@ -46,6 +46,19 @@ Streamlit Cloud link: https://machinelearningpy-m5p8fmwgftxcd8cpzrcxoa.streamlit
 - Hyperparameter tuning controls through the sidebars to observe how parameter choices affect model performance
 - Evaluate each model with residual plots and R² for regression, confusion matrices, ROC curves, and metrics for classification models
 
-
 ✅ Compliments Portfolio ✅
 This project developed my ability to bridge the gap between predictive model theory and user-implementable tools. Evaluating a model's performance metrics after adjusting hyperparameters also indicates the ability to construct models with stronger or weaker fits.
+
+
+## Unsupervised Machine Learning Project
+<img alt="image" src="https://github.com/user-attachments/assets/34d94c4b-7f8e-4620-8e4d-327b640952e6" />
+
+Link: [https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main/project_4]  
+Streamlit Cloud link: (https://dgx3ggwexy9v7s34kafdnf.streamlit.app/)
+- Builds an easy-to-utilize platform where users can learn about unsupervised models by first uploading a dataset of their own and exploring it through summary statistics, missing value analysis, and feature distributions
+- Implements two unsupervised clustering models: Hierarchical Clustering and K-Means Clustering with full feature selection, boolean conversion, and missing data handling capabilities
+- Hyperparameter tuning controls with k selection shows us how the resulting performance metrics shift and a PCA components visual helps the user observe how parameter choices alter cluster groupings
+
+✅ Compliments Portfolio ✅
+Fundamentally, this project helped me develop a comprehension on how unsupervised machine learning functions. Working with unlabeled data and shifting k parameters across models helps me understand how algorithmic assumptions (centroid-based distance in K-Means vs. merge-based distance in Hierarchical) lead to both similar and meaningfully different results. This capstone helped me bridge my semester learnings from visualization, streamlit use, data cleaning, and supervised learning into a dynamic dashboard that users will find applicable. 
+
