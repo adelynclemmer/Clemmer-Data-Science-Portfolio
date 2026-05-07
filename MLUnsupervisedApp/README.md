@@ -30,11 +30,6 @@ metrics that help the user identify the most natural groupings in their data.
 📌 Sklearn Metrics (silhouette_score & silhouette_samples)
 
 ## Two Featured Models:
-
-<p align="center">
-<img height="350" alt="image" src="https://github.com/user-attachments/assets/c0638a78-81da-4692-8038-97d54aae0f7b" />
-</p>
-
 ✅ ***Hierarchical (Agglomerative) Clustering:***\
 This unsupervised model builds clusters from the bottom up! Each observation starts as its own group, then 
 the most similar clusters merge at every step until everything is one group. We can see the process visualized
@@ -47,6 +42,10 @@ k to be specified before the model runs, it has the benefit of being great at cl
 are binary. Try it out!
 
 ## Key Visualizations Used for Evaluation:
+
+<p align="center">
+<img height="350" alt="image" src="https://github.com/user-attachments/assets/c0638a78-81da-4692-8038-97d54aae0f7b" />
+</p>
 
 ✅ ***Dendrogram:***\
 A visual of the complete merge history of your data. Each leaf in your dendrogram is an observation, each horizontal 
