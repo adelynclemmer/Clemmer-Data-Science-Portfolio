@@ -51,7 +51,7 @@ This project developed my ability to bridge the gap between predictive model the
 
 
 ## Unsupervised Machine Learning Project
-<img width="2658" height="1124" alt="image" src="https://github.com/user-attachments/assets/34d94c4b-7f8e-4620-8e4d-327b640952e6" />
+<img width="1392" height="1404" alt="image" src="https://github.com/user-attachments/assets/2335b82f-b7e5-4c03-af3f-ba66aec37a0a" />
 
 Link: https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main/MLUnsupervisedApp  
 Streamlit Cloud link: (https://dgx3ggwexy9v7s34kafdnf.streamlit.app/)
