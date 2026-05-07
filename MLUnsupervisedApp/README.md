@@ -9,7 +9,8 @@ clustering models on the data set they choose! The tool pays close attention to 
 into the impact of grouping across models and datasets.
 
 <p align="center">
-<img height="400" alt="image" src="YOUR_FIRST_IMAGE_URL_HERE" />
+<img height="400" alt="image" src="Y<img width="1378" height="1450" alt="image" src="https://github.com/user-attachments/assets/34d94c4b-7f8e-4620-8e4d-327b640952e6" />
+" />
 <img height="400" alt="image" src="YOUR_SECOND_IMAGE_URL_HERE" />
 </p>
 
