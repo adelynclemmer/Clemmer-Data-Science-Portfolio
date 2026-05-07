@@ -37,8 +37,9 @@ Link: [https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main
 All data scientists must demonstrate the ability to clean messy data for future use. This project taught me how to shift from narrow to wide-form data and aggregate data frames to build compelling visualizations.
 
 ## Machine Learning Project
-<img width="2658" height="1124" alt="image" src="https://github.com/user-attachments/assets/01520cfe-8d73-43e7-910f-01a47ec912b9" />
-Link: [https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main/tidy_data_project]    
+<img width="2658" height="1124" alt="image" src="https://github.com/user-attachments/assets/01520cfe-8d73-43e7-910f-01a47ec912b9" />  
+Link: [https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main/tidy_data_project]  
+
 Streamlit Cloud link: https://machinelearningpy-m5p8fmwgftxcd8cpzrcxoa.streamlit.app/ 
 
 - Builds an interactive Streamlit platform where users can upload a dataset and explore it through summary statistics, missing value analysis, and data types
@@ -51,8 +52,9 @@ This project developed my ability to bridge the gap between predictive model the
 
 
 ## Unsupervised Machine Learning Project
-<img width="1392" height="1404" alt="image" src="https://github.com/user-attachments/assets/2335b82f-b7e5-4c03-af3f-ba66aec37a0a" />
-Link: https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main/MLUnsupervisedApp    
+<img width="1392" height="1404" alt="image" src="https://github.com/user-attachments/assets/2335b82f-b7e5-4c03-af3f-ba66aec37a0a" />  
+Link: https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main/MLUnsupervisedApp  
+
 Streamlit Cloud link: https://dgx3ggwexy9v7s34kafdnf.streamlit.app/  
 
 - Builds an easy-to-utilize platform where users can learn about unsupervised models by first uploading a dataset of their own and exploring it through summary statistics, missing value analysis, and feature distributions
