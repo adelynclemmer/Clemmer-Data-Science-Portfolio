@@ -10,7 +10,7 @@ into the impact of grouping across models and datasets.
 
 <p align="center">
 <img height="400" alt="image" src="https://github.com/user-attachments/assets/34d94c4b-7f8e-4620-8e4d-327b640952e6" />
-<img height="400" alt="image" src="https://github.com/user-attachments/assets/3bbf52bb-f172-4bd4-9b20-4c247c043aa2" />
+<img height="350" alt="image" src="https://github.com/user-attachments/assets/3bbf52bb-f172-4bd4-9b20-4c247c043aa2" />
 </p>
 
 
@@ -19,8 +19,9 @@ a Hierarchical and a K-Means clustering model. The app allows for hyperparameter
 through tools to control cluster numbers. The output also evaluates cluster quality using 
 metrics that help the user identify the most natural groupings in their data.
 
+
 <p align="center">
-<img height="250" alt="image" src="https://github.com/user-attachments/assets/c0638a78-81da-4692-8038-97d54aae0f7b" />
+<img height="350" alt="image" src="https://github.com/user-attachments/assets/c0638a78-81da-4692-8038-97d54aae0f7b" />
 </p>
 
 ## Tools Used:
