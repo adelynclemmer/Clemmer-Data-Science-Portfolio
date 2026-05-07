@@ -51,9 +51,9 @@ This project developed my ability to bridge the gap between predictive model the
 
 
 ## Unsupervised Machine Learning Project
-<img img width="1536" height="1132" alt="image" src="https://github.com/user-attachments/assets/34d94c4b-7f8e-4620-8e4d-327b640952e6" />
+<img width="2658" height="1124" alt="image" src="https://github.com/user-attachments/assets/34d94c4b-7f8e-4620-8e4d-327b640952e6" />
 
-Link: https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main/MLUnsupervisedApp 
+Link: https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main/MLUnsupervisedApp  
 Streamlit Cloud link: (https://dgx3ggwexy9v7s34kafdnf.streamlit.app/)
 - Builds an easy-to-utilize platform where users can learn about unsupervised models by first uploading a dataset of their own and exploring it through summary statistics, missing value analysis, and feature distributions
 - Implements two unsupervised clustering models: Hierarchical Clustering and K-Means Clustering with full feature selection, boolean conversion, and missing data handling capabilities
