@@ -38,6 +38,7 @@ All data scientists must demonstrate the ability to clean messy data for future 
 ## Tidy Data Project
 <img width="2658" height="1124" alt="image" src="https://github.com/user-attachments/assets/01520cfe-8d73-43e7-910f-01a47ec912b9" />
 Link: [https://github.com/adelynclemmer/Clemmer-Data-Science-Portfolio/tree/main/tidy_data_project]
+Streamlit Cloud link: https://machinelearningpy-m5p8fmwgftxcd8cpzrcxoa.streamlit.app/ 
 
 - Builds an interactive Streamlit platform where users can upload a dataset and explore it through summary statistics, missing value analysis, and data types
 - Implements three machine learning models: Simple Linear Regression, Decision Tree Classification, and Logistic Regression with feature and target variable selection
