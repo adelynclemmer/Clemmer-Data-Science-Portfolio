@@ -7,13 +7,12 @@ these features (income level, education, age, and relationship status) to analyz
 spending across six categories.
 
 <p align="center">
-<img height="350" alt="image" src="YOUR_CENTERED_SCREENSHOT_HERE" />
+<img height="350" alt="image" src="https://github.com/user-attachments/assets/96bbaf96-8341-4faa-bedd-ea47f9c0401b" />
 </p>
 
 Begin with a fun shopping prompt before exploring the data through summary statistics, demographic overviews, 
 and a dynamic income filter that updates product spending charts in real time!
 
-<img alt="image" src="YOUR_FULL_WIDTH_SCREENSHOT_HERE" />
 
 ## Tools Used:
 📌 Pandas\
