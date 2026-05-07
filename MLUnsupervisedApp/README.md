@@ -20,19 +20,21 @@ through tools to control cluster numbers. The output also evaluates cluster qual
 metrics that help the user identify the most natural groupings in their data.
 
 
-<p align="center">
-<img height="350" alt="image" src="https://github.com/user-attachments/assets/c0638a78-81da-4692-8038-97d54aae0f7b" />
-</p>
-
 ## Tools Used:
 📌 Pandas\
 📌 Numpy\
 📌 Matplotlib\
 📌 Streamlit\
-📌 Sklearn\
-📌 Scipy
+📌 Scipy\
+📌 Sklearn (StandardScaler) (PCA) (KMeans & AgglomerativeClustering\
+📌 Sklearn Metrics (silhouette_score & silhouette_samples)
 
 ## Two Featured Models:
+
+<p align="center">
+<img height="350" alt="image" src="https://github.com/user-attachments/assets/c0638a78-81da-4692-8038-97d54aae0f7b" />
+</p>
+
 ✅ ***Hierarchical (Agglomerative) Clustering:***\
 This unsupervised model builds clusters from the bottom up! Each observation starts as its own group, then 
 the most similar clusters merge at every step until everything is one group. We can see the process visualized
@@ -45,26 +47,24 @@ k to be specified before the model runs, it has the benefit of being great at cl
 are binary. Try it out!
 
 ## Key Visualizations Used for Evaluation:
-<img alt="image" src="YOUR_VISUALIZATION_SCREENSHOT_HERE" />
 
 ✅ ***Dendrogram:***\
-The complete merge history of your data — each leaf is one observation, each horizontal 
-line is a merge, and the height of the line represents the distance between what was joined. 
-Large vertical gaps reveal where the most natural cluster cuts exist.
+A visual of the complete merge history of your data. Each leaf in your dendrogram is an observation, each horizontal 
+line is a merge, and the height of the line represents the distance between what was joined. You can observe when large 
+vertical gaps reveal where the most natural cluster cuts exist.
 
 ✅ ***PCA Scatter Plot:***\
-Projects high-dimensional data into 2D for visualization. Each dot is a row in the dataset 
-and each color indicates cluster assignment. Tight, well-separated blobs indicate strong 
-clusters while overlapping colors suggest the chosen k may not be well defined.
+This visual compresses high-dimensional data into 2D. Each dot is a row in the dataset 
+and each color indicates cluster group. We are looking for tight, well-separated blobs which mean strong 
+clusters. However,  overlapping colors suggest the chosen k may not be well defined.
 
 ✅ ***Elbow Method (WCSS):***\
-Plots the Within-Cluster Sum of Squares against different values of k. The optimal k sits 
-at the "elbow" where improvement begins to slow — fast to compute and best for large datasets.
+In this performance metric, we measure the Within-Cluster Sum of Squares against different values of k. 
+The optimal k sits at the "elbow" where improvement begins slows. Use this for speed and for large datasets.
 
 ✅ ***Silhouette Score:***\
 Measures how similar each point is to its own cluster versus the nearest neighboring cluster. 
-Ranges from -1 to 1 — higher is better. Used alongside the Elbow Method for the most 
-robust choice of k.
+Our platform will ensure the use of the silhouette score alongside the elbow method when possible. 
 
 ## 🖥️ Setup Instructions
 - Clone the repository
