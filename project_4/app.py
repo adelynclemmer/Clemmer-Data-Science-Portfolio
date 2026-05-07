@@ -298,54 +298,50 @@ if uploaded_file is not None:
             - **Large vertical gap** are cutting where their are the most natural clusters
             """)
 
-        # ------------------------- Step 9b: Silhouette Analysis for Heirarchial ------------------------- #
+        # ------------------------- Step 9b: K & Silhouette Analysis for Heirarchial ------------------------- #
+        # Give the user a recommended k based on silhouette scores to help them decide where to cut the dendrogram for optimal clusters.
+        # In this step we want to help the user understand how to choose the best number of clusters (k) for their data by 
+        # using silhouette scores and PCA visualization to see how groups are formed.
 
-
-        # Range of candidate cluster counts
+        # create a range of potential k values to evaluate silhouette scores
         k_range = range(2, 11)
         sil_scores = []
 
+        # Loop through each k, fit the Agglomerative Clustering model, and calculate the silhouette score for that k.
         for k in k_range:
             labels = AgglomerativeClustering(n_clusters=k, linkage="ward").fit_predict(X_scaled)
             score = silhouette_score(X_scaled, labels)
             sil_scores.append(score)
 
-        # Plot the curve
-        plt.figure(figsize=(7, 4))
-        plt.plot(list(k_range), sil_scores, marker="o")
-        plt.xticks(list(k_range))
-        plt.xlabel("Number of Clusters (k)")
-        plt.ylabel("Average Silhouette Score")
-        plt.title("Silhouette Analysis for Agglomerative (Ward) Clustering")
-        plt.grid(True, alpha=0.3)
-        plt.show()
-
-        # Print best k
+        # Calculate the best k
         best_k = list(k_range)[np.argmax(sil_scores)]
-        #print(f"Best k by silhouette: {best_k}  (score={max(sil_scores):.3f})")
-        
         
         # --- Silhouette Diagram ---
         with st.expander("🤍 Hypertune by K 🤍"):
         
-        # ---- NEW: Hypertune k ---- #
-            st.subheader("Hypertune Number of Clusters (k)")
+        # ------------------------- Step 9c: Hyptertuning with K ------------------------- #
+        # Allow the user to select a k value and see how the clusters form in a PCA scatter plot.
+        # This helps them understand how different k values affect the cluster structure and visually 
+        # confirm the silhouette score recommendations based on how well groups are seperated.
+            st.subheader("Hypertune Number of Clusters For Hierarchical Modeling")
 
             col1, col2 = st.columns([2, 1])
             with col1:
+                # add a slider for tunning
                 chosen_k = st.slider(
                     "Choose number of clusters (k)",
                     min_value=2, max_value=20, value=best_k,
-                    help="Defaults to recommended k — drag to override."
                 )
             with col2:
+                # compare the k of choice vs model recommended k
                 st.metric("Recommended k", best_k)
                 st.metric("Your chosen k", chosen_k)
 
-
-            # PCA at chosen_k
+            # use the chosen k to fit the Agglomerative Clustering model and get cluster labels for each point
             chosen_labels = AgglomerativeClustering(n_clusters=chosen_k, linkage="ward").fit_predict(X_scaled)
 
+            # Reduce the data to 2 dimensions for visualization using PCA and color points by their cluster labels 
+            # we want to see how well the points are seperated at the chosen k
             fig, ax = plt.subplots(figsize=(10, 7))
             scatter = ax.scatter(X_pca[:, 0], X_pca[:, 1], c=chosen_labels, cmap='viridis',
                                 s=60, edgecolor='k', alpha=0.7)
@@ -355,16 +351,18 @@ if uploaded_file is not None:
             ax.legend(*scatter.legend_elements(), title="Clusters")
             ax.grid(True)
 
+            # if the user selected a column to label points in the diagram label each point with the corresponding value for interpretability
             if label_col != "None":
                 for i, label in enumerate(df[label_col].astype(str).values):
                     ax.annotate(label[:4], (X_pca[i, 0], X_pca[i, 1]),
                                 fontsize=7, alpha=0.75, xytext=(4, 2),
                                 textcoords="offset points")
-
+        
             plt.tight_layout()
             st.pyplot(fig)
             plt.close(fig)
 
+            # add an expander to explain how to interpret the PCA scatter plot 
             with st.expander("💡 PCA Description 💡"):
                 st.markdown("""
                 This **PCA scatter plot** plots our high-dimensional data into 2D for graph for visualization.
@@ -376,24 +374,26 @@ if uploaded_file is not None:
                 Try a k value that is not the recommended level, and see how they merge!
                 """)
 
-
+        # Add mentrics to compare the silhouette score of the chosen k vs the best k based on silhouette scores 
+        # to help users understand how their choice of k impacts quality of the models cluser ability
         with st.expander("🤍 Silhouette Analysis 🤍"):
 
-            from sklearn.metrics import silhouette_score, silhouette_samples
-
+            # Calculate silhouette scores for the chosen k and the best k to show how well the clusters are formed at each level.
             sample_sil = silhouette_samples(X_scaled, chosen_labels)
             avg_sil = silhouette_score(X_scaled, chosen_labels)
+
+            #calculate the max silhouette score across all k values to show the best possible score for this data 
             max_sil = max(sil_scores)
             max_sil_k = list(k_range)[np.argmax(sil_scores)]
 
-            # --- Metric Cards ---
+            # diplay the outputs 
             col1, col2, col3, col4 = st.columns(4)
             col1.metric("Chosen k", chosen_k)
             col2.metric("Chosen k silhouette score", f"{avg_sil:.3f}")
             col3.metric("Best k", max_sil_k)
             col4.metric("Best silhouette score", f"{max_sil:.3f}")
 
-            # --- Silhouette Diagram ---
+            # Plot a line graph to show the trend of scores across different k values
             plt.figure(figsize=(7, 4))
             plt.plot(list(k_range), sil_scores, marker="o")
             plt.xticks(list(k_range))
@@ -408,6 +408,7 @@ if uploaded_file is not None:
             st.pyplot(plt.gcf())
             plt.close()
 
+            # add an expander to explain how to interpret the silhouette analysis and what it means for choosing k
             with st.expander("💡 Silhouette Overview 💡"):
                 col1, col2 = st.columns(2)
 
@@ -435,11 +436,16 @@ if uploaded_file is not None:
                     """)
 
 
+    # ------------------------- Step 10: K-Means Modeling  ------------------------- #
+    # In this tab we will build a K-Means clustering model which partitions the data into k clusters by starting with a random 
+    # center, then iteratively re-assigning points to the nearest cluster centroid and updating the centroids based on the cluster's mean distance
+    # We still use PCA to visualize, allow for hypertuning by k, and evaluate the best k with silhouette scores.
+    # However it is important to note  the way clusters are formed is different in unsupervised kmeans than hierarchical clustering.
+        
         with tab4:
-
+            # provide an overview of the model
             with st.expander("💡 What is K-Means Clustering? 💡"):
                 col1, col2 = st.columns([1, 1])
-
             
                 with col1:
                     st.markdown("### What is K-Means?")
@@ -477,19 +483,10 @@ if uploaded_file is not None:
                     - Useful for customer segmentation, data exploration, and imputation
                     """)
 
-                # ------------------------- Step 2: Compute KMeans Clustering ------------------------- #
-                    # KMeans clustering partitions the data into k clusters by iteratively assigning points 
-                    # to the nearest cluster centroid and then updating the centroids based on the cluster's mean.
-                    #
-                    # Key Concepts:
-                    # - Initialization: Randomly select k centroids.
-                    # - Assignment & Update: Reassign points and recalculate centroids until convergence.
-
-                from sklearn.cluster import KMeans
-                from sklearn.metrics import silhouette_score
-
+            # ------------------------- Step 10a: allow for hypertuning  ------------------------- #
             st.subheader("K-Means Clustering Results")
-
+            
+            # allow users to select a column to label points in the PCA scatter plot for better interpretability.
             label_kmean_col = st.selectbox(
                 "Label the points in this diagram by __________:",
                 options=["None"] + df.columns.tolist(),
@@ -497,37 +494,39 @@ if uploaded_file is not None:
                 key="kmeans_label_col"
             )
 
-            # ------------------------- Step 3: Visualization of KMeans Clustering Results ------------------------- #
+            # ------------------------- Step 10c: Fit the model and hypertune ------------------------- #
             # Visualization helps us understand how well KMeans has partitioned the data.
             # Since our dataset is high-dimensional, we reduce it to 2D using PCA before plotting.
 
-            with st.expander("🤍 Hypertune by K 🤍"):
-                st.subheader("Hypertune Number of Clusters (k)")
+            with st.expander("🤍 Veiw Results and Hypertune by K 🤍"):
+                # Add dynamic user input to select k and see how the clusters form in a PCA scatter plot.
+                st.subheader("Hypertune Number of Clusters for K-Means Modeling")
 
-                # ------------------------- Step 5: Evaluating the Best Number of Clusters ------------------------- #
-                # Two popular methods:
-                # - Elbow Method: plot WCSS against different values of k; the "elbow" suggests optimal k.
-                # - Silhouette Score: quantifies how similar a point is to its own cluster vs. other clusters.
-
+                # let the number of clusters range based on user input 
                 ks = range(2, 11)
                 wcss = []
                 silhouette_scores = []
 
+                # Loop through each k, fit the KMeans model, and calculate both the WCSS and silhouette score for that k 
+                # to provide a recommendation for the best k based on silhouette scores.
                 for k in ks:
+                    #fit the Model with the randome state meaning the initial centroids are randomly selected 
+                    # n_init=10 means the algorithm will run 10 times with different random initial centroids
                     km = KMeans(n_clusters=k, random_state=42, n_init=10)
+
+                    # fit the model 
                     km.fit(X_scaled)
                     wcss.append(km.inertia_)
                     silhouette_scores.append(silhouette_score(X_scaled, km.labels_))
 
                 best_km_k = list(ks)[np.argmax(silhouette_scores)]
 
+                # add tuning slider
                 col1, col2 = st.columns([2, 1])
                 with col1:
                     chosen_km_k = st.slider(
-                        "Choose number of clusters (k)",
+                        "Hypertune Number of Clusters for K-Means Modeling",
                         min_value=2, max_value=20, value=best_km_k,
-                        help="Defaults to recommended k — drag to override.",
-                        key="kmeans_k_slider"
                     )
                 with col2:
                     st.metric("Recommended k", best_km_k)
@@ -549,6 +548,7 @@ if uploaded_file is not None:
                 ax.legend(loc='best')
                 ax.grid(True)
 
+                # if there is a column selected label each point with the corresponding value for interpretability
                 if label_kmean_col != "None":
                     for i, label in enumerate(df[label_kmean_col].astype(str).values):
                         ax.annotate(label[:4], (X_pca[i, 0], X_pca[i, 1]),
@@ -559,6 +559,7 @@ if uploaded_file is not None:
                 st.pyplot(fig)
                 plt.close(fig)
 
+                # expander for user understanding of the PCA scatter plot and how to interpret the clusters 
                 with st.expander("💡 PCA Description 💡"):
                     st.markdown("""
                     This **PCA scatter plot** projects high-dimensional data into 2D for visualization.
@@ -570,6 +571,7 @@ if uploaded_file is not None:
                     Try a k value different from the recommendation and see how the clusters shift!
                     """)
 
+                # Expander highlighting the differences between K-Means and Hierarchical clustering 
                 with st.expander("💡 How is K-Means Different than Hierarchical? 💡"):
                     col1, col2 = st.columns([1, 1])
 
@@ -615,10 +617,12 @@ if uploaded_file is not None:
                         hierarchical is more robust here
                         """)
 
-            # ------------------------- Step 5: Elbow + Silhouette Analysis ------------------------- #
 
+            # ------------------------- Step 10d: Elbow + Silhouette Analysis ------------------------- #
+            # Performance metrics help us evaluate how well the K-Means model has clustered the data and choose the optimal number of clusters (k).
+
+            #highlight the silhouette score of the chosen k vs the best k based on silhouette scores
             with st.expander("🤍 Silhouette & Elbow Analysis 🤍"):
-
                 avg_km_sil = silhouette_score(X_scaled, clusters)
                 max_km_sil = max(silhouette_scores)
 
@@ -631,7 +635,9 @@ if uploaded_file is not None:
                 # Plot the Elbow Method and Silhouette Score results side by side
                 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
 
-                # Elbow Method
+                # use the eblow method to plot the WCSS for each k to show how the model's inertia changes as we increase the number of clusters. 
+                # inertia is the sum of squared distances of samples to their closest cluster center, so we want to see where the curve starts to flatten out
+                # because at this point adding more clusters does not significantly reduce the WCSS, indicating that we have found a good balance
                 ax1.plot(list(ks), wcss, marker='o')
                 ax1.axvline(chosen_km_k, color="red", linestyle="--", alpha=0.6, label=f"chosen k={chosen_km_k}")
                 ax1.axvline(best_km_k, color="green", linestyle="--", alpha=0.6, label=f"best k={best_km_k}")
@@ -641,7 +647,7 @@ if uploaded_file is not None:
                 ax1.legend()
                 ax1.grid(True)
 
-                # Silhouette Score
+                # Plot the Silhouette Score
                 ax2.plot(list(ks), silhouette_scores, marker='o', color='green')
                 ax2.axvline(chosen_km_k, color="red", linestyle="--", alpha=0.6, label=f"chosen k={chosen_km_k}")
                 ax2.axvline(best_km_k, color="green", linestyle="--", alpha=0.6, label=f"best k={best_km_k}")
@@ -655,6 +661,7 @@ if uploaded_file is not None:
                 st.pyplot(fig)
                 plt.close(fig)
 
+                # and an expander to explain how to interpret the elbow and silhouette charts and use them together for choosing k
                 with st.expander("💡 Elbow & Silhouette Overview 💡"):
                     col1, col2 = st.columns(2)
 
@@ -683,7 +690,5 @@ if uploaded_file is not None:
                         Use both charts together for the most 
                         robust choice of k.
                         """)
-
-
 
 
