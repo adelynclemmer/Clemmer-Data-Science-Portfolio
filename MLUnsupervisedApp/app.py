@@ -323,7 +323,7 @@ if uploaded_file is not None:
         # Allow the user to select a k value and see how the clusters form in a PCA scatter plot.
         # This helps them understand how different k values affect the cluster structure and visually 
         # confirm the silhouette score recommendations based on how well groups are seperated.
-            st.subheader("Hypertune Number of Clusters For Hierarchical Modeling")
+            st.subheader("Hypertune Clusters For Hierarchical Modeling")
 
             col1, col2 = st.columns([2, 1])
             with col1:
@@ -335,7 +335,7 @@ if uploaded_file is not None:
             with col2:
                 # compare the k of choice vs model recommended k
                 st.metric("Recommended k", best_k)
-                st.metric("Your chosen k", chosen_k)
+                st.metric("Chosen k", chosen_k)
 
             # use the chosen k to fit the Agglomerative Clustering model and get cluster labels for each point
             chosen_labels = AgglomerativeClustering(n_clusters=chosen_k, linkage="ward").fit_predict(X_scaled)
