@@ -1,5 +1,5 @@
 # Unsupervised Machine Learning Project Overview
-Check it out at this link: https://your-streamlit-link-here.streamlit.app/](https://dgx3ggwexy9v7s34kafdnf.streamlit.app/
+Check it out at this link:https://dgx3ggwexy9v7s34kafdnf.streamlit.app
 
 Unsupervised machine learning works with **unlabeled data** where there is no target variable to predict. 
 Instead, our goal when using these tools is to identify hidden structures, find patterns, and
